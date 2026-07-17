@@ -1,0 +1,123 @@
+TC_ECOM_018:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    member_username: test
+    expected_delete_status: 0
+    expected_business_code: 200
+
+TC_ECOM_019:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    repeat: 2
+    expected_quantity: 2
+    expected_cart_record_count: 1
+    member_username: test
+    expected_delete_status: 0
+    expected_business_code: 200
+
+TC_ECOM_020:
+  - product_id: 30
+    sku_id: 179
+    quantity: 0
+    member_username: test
+    success_business_code: 200
+    expected_rejected_field: quantity
+
+TC_ECOM_021:
+  - product_id: 30
+    sku_id: 179
+    quantity: -1
+    member_username: test
+    success_business_code: 200
+    expected_rejected_field: quantity
+
+TC_ECOM_022:
+  - product_id: 30
+    sku_id: 179
+    quantity: 999999
+    member_username: test
+    success_business_code: 200
+    expected_message_keywords:
+      - 库存
+      - 不足
+      - stock
+      - 超过
+
+TC_ECOM_023:
+  - product_id: 30
+    sku_id: 179
+    expected_stock: 100
+    quantity: 101
+    member_username: test
+    success_business_code: 200
+    expected_message_keywords:
+      - 库存
+      - 不足
+      - stock
+
+TC_ECOM_024:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    member_username: test
+    expected_http_status: 401
+    success_business_code: 200
+    expected_message_keywords:
+      - 未登录
+      - 登录
+      - unauthorized
+      - token
+
+TC_ECOM_025:
+  - product_id: 999999
+    sku_id: 179
+    quantity: 1
+    member_username: test
+    success_business_code: 200
+    expected_message_keywords:
+      - 商品
+      - 不存在
+      - 无效
+      - product
+
+TC_ECOM_026:
+  - product_id: 30
+    sku_id: 190
+    quantity: 1
+    member_username: test
+    success_business_code: 200
+    expected_message_keywords:
+      - SKU
+      - 商品
+      - 不匹配
+      - 规格
+
+TC_ECOM_027:
+  - product_id: 30
+    sku_id: 179
+    quantity: 2
+    expected_business_code: 200
+    required_cart_item_fields:
+      - id
+      - productId
+      - productSkuId
+      - quantity
+      - price
+
+TC_ECOM_028:
+  - expected_business_code: 200
+    expected_cart_item_count: 0
+
+TC_ECOM_029:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    expected_business_code: 200
+    required_cart_item_fields:
+      - id
+      - productId
+      - productSkuId
+      - quantity
+

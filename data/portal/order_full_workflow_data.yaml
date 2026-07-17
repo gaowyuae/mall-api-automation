@@ -1,0 +1,57 @@
+TC_ECOM_UNMAPPED_203:
+  - member_username: test
+    keyword: 手机
+    page_num: 1
+    page_size: 10
+    sort: 0
+    product_id: 27
+    sku_id: 99
+    quantity: 1
+    pay_type: 1
+    coupon_id: null
+    use_integration: 0
+    default_address_status: 1
+    delivery_company: 顺丰
+    delivery_sn_prefix: SF203
+    pending_order_status: 0
+    paid_order_status: 1
+    shipped_order_status: 2
+    completed_order_status: 3
+    expected_business_code: 200
+    expected_item_count: 1
+    required_search_fields:
+      - id
+      - name
+      - price
+      - productCategoryId
+    required_product_fields:
+      - id
+      - name
+      - pic
+      - price
+      - productCategoryId
+      - brandName
+    required_sku_fields:
+      - id
+      - price
+      - stock
+      - skuCode
+      - spData
+    required_cart_item_fields:
+      - id
+      - productId
+      - productSkuId
+      - quantity
+      - price
+    required_address_fields:
+      - id
+      - phoneNumber
+      - detailAddress
+      - defaultStatus
+    required_confirm_fields:
+      - cartPromotionItemList
+      - memberReceiveAddressList
+      - couponHistoryDetailList
+      - memberIntegration
+      - integrationConsumeSetting
+      - calcAmount

@@ -1,0 +1,35 @@
+[tool.pytest.ini_options]
+testpaths = ["testcase"]
+python_files = ["test*.py"]
+python_functions = ["test_*"]
+markers = [
+    "api: API 自动化测试",
+    "portal: Portal 前台系统",
+    "admin: Admin 后台系统",
+    "integration: 集成测试",
+    "db: 数据库测试",
+    "smoke: 冒烟测试",
+    "story(name): 设置 Allure Story",
+    "title(name): 设置非参数化用例的 Allure Title",
+    "p0: P0 阻断级用例",
+    "p1: P1 严重级用例",
+    "p2: P2 普通级用例",
+    "p3: P3 次要级用例",
+]
+addopts = [
+    "-q",
+    "--strict-markers",
+    "--alluredir=reports/allure-results",
+    "--clean-alluredir",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"

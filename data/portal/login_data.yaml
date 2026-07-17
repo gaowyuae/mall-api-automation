@@ -1,0 +1,30 @@
+TC_ECOM_001:
+  - username: test
+    password: "123456"
+    expected_business_code: 200
+    expected_token_head: Bearer
+
+TC_ECOM_002:
+  - username: test
+    password: wrong_pwd_123
+    success_business_code: 200
+
+TC_ECOM_003:
+  - username: not_exist_user_001
+    password: "123456"
+    success_business_code: 200
+
+TC_ECOM_004:
+  - authorization: Bearer invalid.token.value
+    expected_business_code: 401
+
+TC_ECOM_005:
+  - member_username: test
+    pending_receive_status: 2
+    success_business_code: 200
+    expected_message_keywords:
+      - 权限
+      - 用户
+      - token
+      - Token
+      - 登录

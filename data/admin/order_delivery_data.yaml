@@ -1,0 +1,109 @@
+TC_ECOM_070:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    paid_order_status: 1
+    shipped_order_status: 2
+    delivery_company: 顺丰
+    delivery_sn: SF202606090001
+    expected_business_code: 200
+
+TC_ECOM_071:
+  - member_username: test
+    order_id: null
+    candidate_order_status: 1
+    delivery_company: 顺丰
+    delivery_sn: SF001
+    expected_required_field: orderId
+    success_business_code: 200
+    expected_message_keywords:
+      - orderId
+      - fail
+
+TC_ECOM_072:
+  - member_username: test
+    candidate_order_status: 1
+    delivery_company: null
+    delivery_sn: SF001
+    expected_required_field: deliveryCompany
+    success_business_code: 200
+    expected_message_keywords:
+      - deliveryCompany
+      - fail
+
+TC_ECOM_073:
+  - member_username: test
+    candidate_order_status: 1
+    delivery_company: 顺丰
+    delivery_sn: null
+    expected_required_field: deliverySn
+    success_business_code: 200
+    expected_message_keywords:
+      - deliverySn
+      - fail
+
+TC_ECOM_075:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    delivery_company: 顺丰
+    delivery_sn: SF202606090160
+    expected_business_code: 200
+    expected_message_keywords:
+      - 订单状态
+      - 待发货
+      - 不能发货
+      - status
+
+TC_ECOM_074:
+  - order_id: 999999
+    delivery_company: 顺丰
+    delivery_sn: SF202606090159
+    success_business_code: 200
+    expected_message_keywords:
+      - 订单
+      - 不存在
+      - 无效
+      - order
+
+TC_ECOM_076:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    delivery_company: 顺丰
+    delivery_sn: SF202606090161
+    repeat_delivery_company: 顺丰
+    repeat_delivery_sn: SF202606090161R
+    shipped_order_status: 2
+    expected_business_code: 200
+
+TC_ECOM_077:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    delivery_company: 顺丰
+    delivery_sn: SF202606090162
+    paid_order_status: 1
+    success_business_code: 200
+    expected_http_status: 401
+    expected_message_keywords:
+      - 权限
+      - 未登录
+      - token
+      - unauthorized
+
+TC_ECOM_088:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    paid_order_status: 1
+    shipped_order_status: 2
+    delivery_company: 顺丰
+    delivery_sn: SF202606090177
+    expected_business_code: 200

@@ -1,0 +1,104 @@
+TC_ECOM_041:
+  - member_username: test
+    product_id: 36
+    sku_id: 164
+    quantity: 1
+    expected_order_amount: "120.00"
+    coupon_history_reference: AUTO_TC076
+    query_use_status: 0
+    available_in_confirm: true
+    expected_initial_use_status: 0
+    expected_used_status: 1
+    pay_type: 1
+    use_integration: 0
+    expected_business_code: 200
+
+TC_ECOM_043:
+  - member_username: test
+    product_id: 36
+    sku_id: 164
+    quantity: 1
+    coupon_history_reference: AUTO_TC079
+    query_use_status: 1
+    available_in_confirm: false
+    expected_initial_use_status: 1
+    pay_type: 1
+    use_integration: 0
+    success_business_code: 200
+    expected_message_keywords:
+      - 优惠券
+      - 已使用
+      - 不可用
+
+TC_ECOM_044:
+  - member_username: test
+    product_id: 36
+    sku_id: 164
+    quantity: 1
+    coupon_history_reference: AUTO_TC081_FOREIGN
+    available_in_confirm: false
+    pay_type: 1
+    use_integration: 0
+    expected_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 优惠券
+      - 无权限
+      - 不存在
+      - 无效
+
+TC_ECOM_045:
+  - member_username: test
+    product_id: 32
+    sku_id: 190
+    quantity: 1
+    cart_price: "99.99"
+    expected_order_amount: "99.99"
+    coupon_threshold: "100.00"
+    coupon_history_reference: AUTO_TC083
+    query_use_status: 0
+    available_in_confirm: false
+    expected_initial_use_status: 0
+    pay_type: 1
+    use_integration: 0
+    expected_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 优惠券
+      - 门槛
+      - 不满足
+      - 不可用
+
+TC_ECOM_042:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    cart_price: "100.00"
+    coupon_history_reference: "7911945030190001"
+    query_use_status: 0
+    available_in_confirm: false
+    expected_initial_use_status: 0
+    pay_type: 1
+    use_integration: 0
+    expected_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 优惠券
+      - 过期
+      - 不可用
+      - 无效
+
+TC_ECOM_046:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    cart_price: "100.00"
+    expected_order_amount: "100.00"
+    coupon_threshold: "100.00"
+    coupon_history_reference: AUTO_TC083
+    query_use_status: 0
+    available_in_confirm: true
+    expected_initial_use_status: 0
+    expected_business_code: 200

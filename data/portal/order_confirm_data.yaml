@@ -1,0 +1,109 @@
+TC_ECOM_033:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    member_username: test
+    pending_order_status: 0
+    expected_business_code: 200
+    expected_item_count: 1
+    required_confirm_fields:
+      - cartPromotionItemList
+      - memberReceiveAddressList
+      - couponHistoryDetailList
+      - memberIntegration
+      - integrationConsumeSetting
+      - calcAmount
+
+TC_ECOM_034:
+  - items:
+      - product_id: 30
+        sku_id: 179
+        quantity: 1
+      - product_id: 32
+        sku_id: 190
+        quantity: 2
+    member_username: test
+    pending_order_status: 0
+    expected_business_code: 200
+    expected_item_count: 2
+    required_confirm_fields:
+      - cartPromotionItemList
+      - memberReceiveAddressList
+      - couponHistoryDetailList
+      - memberIntegration
+      - integrationConsumeSetting
+      - calcAmount
+
+TC_ECOM_035:
+  - cart_ids: null
+    member_username: test
+    pending_order_status: 0
+    expected_required_field: cartIds
+
+TC_ECOM_036:
+  - cart_ids:
+      - 999999
+    member_username: test
+    pending_order_status: 0
+    success_business_code: 200
+    expected_message_keywords:
+      - 购物车
+      - 商品
+      - 不存在
+      - 无效
+      - cart
+
+TC_ECOM_037:
+  - cart_ids: []
+    member_username: test
+    pending_order_status: 0
+    required_validation_enabled: false
+    expected_business_code: 200
+    expected_cart_item_count: 0
+    expected_message_keywords:
+      - 请选择商品
+      - 购物车
+      - 商品
+      - cartIds
+
+TC_ECOM_038:
+  - product_id: 30
+    sku_id: 179
+    expected_unit_price: "88.00"
+    quantity: 2
+    expected_total_amount: "176.00"
+    member_username: test
+    pending_order_status: 0
+    expected_business_code: 200
+    expected_item_count: 1
+    required_confirm_fields:
+      - cartPromotionItemList
+      - memberReceiveAddressList
+      - couponHistoryDetailList
+      - memberIntegration
+      - integrationConsumeSetting
+      - calcAmount
+
+TC_ECOM_039:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    cart_price: "100.00"
+    coupon_history_reference: AUTO_TC083
+    expected_business_code: 200
+    expected_initial_use_status: 0
+    available_in_confirm: true
+
+TC_ECOM_040:
+  - member_username: test
+    product_id: 32
+    sku_id: 190
+    quantity: 1
+    cart_price: "99.99"
+    expected_order_amount: "99.99"
+    coupon_threshold: "100.00"
+    coupon_history_reference: AUTO_TC083
+    expected_business_code: 200
+    expected_initial_use_status: 0
+    available_in_confirm: false

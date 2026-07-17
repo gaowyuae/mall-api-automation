@@ -1,0 +1,47 @@
+TC_ECOM_052:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    expected_order_amount: "100.00"
+    coupon_amount: "10.00"
+    coupon_minimum_amount: "100.00"
+    coupon_use_type: 0
+    coupon_history_reference: AUTO_TC107
+    query_use_status: 0
+    expected_initial_use_status: 0
+    expected_used_status: 1
+    available_in_confirm: true
+    minimum_member_integration: 100
+    use_integration: 100
+    expected_integration_amount: "1.00"
+    expected_pay_amount: "89.00"
+    expected_history_increment: 1
+    expected_history_change_count: -100
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200
+
+TC_ECOM_053:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    expected_order_amount: "100.00"
+    coupon_amount: "10.00"
+    coupon_minimum_amount: "100.00"
+    coupon_use_type: 0
+    coupon_history_reference: AUTO_TC109
+    query_use_status: 0
+    expected_initial_use_status: 0
+    expected_used_status: 1
+    available_in_confirm: true
+    minimum_member_integration: 1000
+    use_integration: 100
+    expected_integration_amount: "1.00"
+    expected_pay_amount: "89.00"
+    expected_history_increment: 1
+    expected_history_change_count: -100
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200

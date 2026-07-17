@@ -1,0 +1,78 @@
+TC_ECOM_047:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    expected_order_amount: "100.00"
+    use_integration: 0
+    expected_integration_amount: "0.00"
+    expected_history_increment: 0
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200
+
+TC_ECOM_048:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    expected_order_amount: "100.00"
+    expected_member_integration: 3900
+    use_integration: 100
+    expected_integration_amount: "1.00"
+    expected_history_increment: 1
+    expected_history_change_count: -100
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200
+
+TC_ECOM_049:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    expected_member_integration: 3900
+    use_integration: 3901
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 积分
+      - 不足
+      - 不可用
+      - 超过
+
+TC_ECOM_050:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    cart_price: "10.00"
+    expected_order_amount: "10.00"
+    minimum_member_integration: 1001
+    use_integration: 1001
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 积分
+      - 抵扣
+      - 超限
+      - 不可用
+
+TC_ECOM_051:
+  - member_username: test
+    product_id: 36
+    sku_id: 163
+    quantity: 1
+    expected_order_amount: "100.00"
+    minimum_member_integration: 300
+    use_integration: 300
+    expected_integration_amount: "3.00"
+    expected_history_increment: 1
+    expected_history_change_count: -300
+    deduction_per_amount: 100
+    pay_type: 1
+    expected_business_code: 200

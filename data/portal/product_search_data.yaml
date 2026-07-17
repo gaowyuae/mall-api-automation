@@ -1,0 +1,71 @@
+TC_ECOM_093:
+  - keyword: 手机
+    page_num: 1
+    page_size: 10
+    sort: 0
+    expected_business_code: 200
+    required_product_fields:
+      - id
+      - name
+      - price
+      - productCategoryId
+
+TC_ECOM_007:
+  - keyword: keyword_no_result_20260609609
+    page_num: 1
+    page_size: 10
+    sort: 0
+    expected_business_code: 200
+
+TC_ECOM_008:
+  - product_category_id: 19
+    allowed_category_ids:
+      - 19
+    page_num: 1
+    page_size: 10
+    sort: 0
+    expected_business_code: 200
+
+TC_ECOM_009:
+  - brand_id: 6
+    page_num: 1
+    page_size: 10
+    sort: 0
+    expected_business_code: 200
+
+TC_ECOM_010:
+  - keyword: 自动化下架商品
+    excluded_product_ref: OFF_SALE_001
+    excluded_product_name: 自动化下架商品
+    page_num: 1
+    page_size: 10
+    sort: 0
+    expected_business_code: 200
+    expected_publish_status: 1
+
+TC_ECOM_011:
+  - keyword: "%' or 1=1 --"
+    page_num: 1
+    page_size: 10
+    sort: 0
+    forbidden_response_keywords:
+      - SQL syntax
+      - mysql
+      - database exception
+      - traceback
+
+TC_ECOM_090:
+  - keyword: 手机
+    page_num: abc
+    page_size: 10
+    sort: 0
+    success_business_code: 200
+    expected_message_field: pageNum
+
+TC_ECOM_091:
+  - keyword: 手机
+    page_num: 1
+    page_size: 0
+    sort: 0
+    success_business_code: 200
+    expected_message_field: pageSize

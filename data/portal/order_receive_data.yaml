@@ -1,0 +1,105 @@
+TC_ECOM_078:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    delivery_company: 顺丰
+    delivery_sn: SF202606090167
+    pending_receive_status: 2
+    completed_order_status: 3
+    expected_business_code: 200
+
+TC_ECOM_079:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    delivery_company: 顺丰
+    delivery_sn: SF202606090168
+    pending_receive_status: 2
+    completed_order_status: 3
+    repeat: 2
+    expected_business_code: 200
+
+TC_ECOM_080:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_delivery_status: 1
+    expected_business_code: 200
+    expected_message_keywords:
+      - 订单状态
+      - 待收货
+      - 不能确认
+      - status
+
+TC_ECOM_083:
+  - current_member_username: test
+    other_member_order_status: 2
+    detail_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 权限
+      - 订单
+      - 不存在
+      - 用户
+
+TC_ECOM_085:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    delivery_company: 顺丰
+    delivery_sn: SF202606090174
+    pending_receive_status: 2
+    completed_order_status: 3
+    expected_business_code: 200
+
+TC_ECOM_081:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    expected_business_code: 200
+    expected_message_keywords:
+      - 订单状态
+      - 待收货
+      - 不能确认
+      - status
+
+TC_ECOM_082:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    canceled_order_status: 4
+    expected_business_code: 200
+    expected_message_keywords:
+      - 订单状态
+      - 已取消
+      - 不能确认
+      - status
+
+TC_ECOM_084:
+  - member_username: test
+    order_id: null
+    expected_required_field: orderId
+    success_business_code: 200
+    expected_message_keywords:
+      - orderId
+      - fail
+
+TC_ECOM_089:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    delivery_company: 顺丰
+    delivery_sn: SF202606090178
+    pending_receive_status: 2
+    completed_order_status: 3
+    repeat: 2
+    expected_business_code: 200

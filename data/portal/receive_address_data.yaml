@@ -1,0 +1,44 @@
+TC_ECOM_030:
+  - member_username: test
+    default_status: 1
+    expected_business_code: 200
+    required_address_fields:
+      - id
+      - phoneNumber
+      - detailAddress
+      - defaultStatus
+
+TC_ECOM_031:
+  - source_username: test
+    username: no_address_user
+    password: "123456"
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    use_integration: 0
+    pending_order_status: 0
+    expected_login_code: 200
+    expected_business_code: 200
+    expected_address_count: 0
+    required_validation_enabled: false
+    expected_message_keywords:
+      - 地址
+      - 收货
+      - 请选择
+
+TC_ECOM_032:
+  - current_member_username: test
+    foreign_address_id: 5
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    use_integration: 0
+    pending_order_status: 0
+    expected_business_code: 200
+    expected_message_keywords:
+      - 地址
+      - 收货
+      - 不存在
+      - 无权限

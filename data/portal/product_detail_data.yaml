@@ -1,0 +1,67 @@
+TC_ECOM_012:
+  - product_id: 30
+    expected_business_code: 200
+    required_product_fields:
+      - id
+      - name
+      - pic
+      - price
+      - productCategoryId
+      - brandName
+
+TC_ECOM_013:
+  - product_id: 999999
+    success_business_code: 200
+
+TC_ECOM_014:
+  - product_id: 30
+    expected_sku_id: 179
+    expected_business_code: 200
+    required_sku_fields:
+      - id
+      - price
+      - stock
+      - skuCode
+      - spData
+
+TC_ECOM_015:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    member_username: test
+    expected_business_code: 200
+    required_sku_fields:
+      - id
+      - price
+      - stock
+      - skuCode
+      - spData
+
+TC_ECOM_016:
+  - product_id: 43
+    sku_id: 234
+    required_stock: 0
+    quantity: 1
+    member_username: test
+    expected_business_code: 200
+    expected_message_keywords:
+      - 库存
+      - 不足
+      - stock
+
+TC_ECOM_017:
+  - product_id: 30
+    nonexistent_sku_id: 999999
+    quantity: 1
+    member_username: test
+    expected_business_code: 200
+    expected_message_keywords:
+      - SKU
+      - sku
+      - 不存在
+      - 规格
+
+TC_ECOM_092:
+  - product_id: abc
+    success_business_code: 200
+    expected_message_field: id

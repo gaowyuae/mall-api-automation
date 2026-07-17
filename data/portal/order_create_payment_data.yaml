@@ -1,0 +1,190 @@
+TC_ECOM_054:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    expected_business_code: 200
+
+TC_ECOM_055:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    maximum_valid_orders: 1
+    expected_business_code: 200
+
+TC_ECOM_056:
+  - member_username: test
+    cart_ids: null
+    pay_type: 1
+    expected_required_field: cartIds
+    success_business_code: 200
+    expected_message_keywords:
+      - cartIds
+      - fail
+
+TC_ECOM_057:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: null
+    expected_required_field: payType
+
+TC_ECOM_058:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    member_receive_address_id: null
+    expected_required_field: memberReceiveAddressId
+
+TC_ECOM_065:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    paid_order_status: 1
+    expected_business_code: 200
+
+TC_ECOM_066:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    repeat_pay: 2
+    pending_order_status: 0
+    paid_order_status: 1
+    expected_business_code: 200
+
+TC_ECOM_067:
+  - order_id: 999999
+    pay_type: 1
+    detail_business_code: 200
+    success_business_code: 200
+    expected_message_keywords:
+      - 订单
+      - 不存在
+      - 无效
+      - order
+
+TC_ECOM_068:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    canceled_order_status: 4
+    expected_business_code: 200
+
+TC_ECOM_059:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    expected_business_code: 200
+    success_business_code: 200
+    expected_cart_delete_status: 1
+    expected_message_keywords:
+      - 购物车
+      - 商品
+      - 不存在
+      - 无效
+
+TC_ECOM_060:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 2
+    pay_type: 1
+    pending_order_status: 0
+    expected_business_code: 200
+
+TC_ECOM_061:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    order_count: 2
+    pending_order_status: 0
+    expected_business_code: 200
+
+TC_ECOM_062:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    maximum_valid_orders: 1
+    expected_cart_delete_status: 1
+    expected_business_code: 200
+
+TC_ECOM_063:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    coupon_id: 999999
+    use_integration: 0
+    success_business_code: 200
+    expected_message_keywords:
+      - 优惠券
+      - 不存在
+      - 不可用
+      - 无效
+
+TC_ECOM_064:
+  - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    use_integration: -100
+    success_business_code: 200
+    expected_message_keywords:
+      - 积分
+      - 参数
+      - 非法
+      - 不可用
+
+TC_ECOM_069:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    invalid_pay_type: 99
+    pending_order_status: 0
+    success_business_code: 200
+    expected_message_keywords:
+      - 支付
+      - payType
+      - 方式
+      - 非法
+
+TC_ECOM_086:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    paid_order_status: 1
+    expected_business_code: 200
+
+TC_ECOM_087:
+  - product_id: 30
+    sku_id: 179
+    quantity: 1
+    pay_type: 1
+    pending_order_status: 0
+    canceled_order_status: 4
+    expected_business_code: 200

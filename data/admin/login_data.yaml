@@ -1,0 +1,6 @@
+TC_ECOM_006:
+  - password: macro123
+    username: admin
+    expected_http_status: 200
+    expected_business_code: 200
+    expected_token_head: Bearer
