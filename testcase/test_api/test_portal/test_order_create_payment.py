@@ -164,31 +164,44 @@ class TestOrderCreation:
     @pytest.mark.title("TC_ECOM_056 创建订单缺少cartIds失败")
     def test_create_order_missing_cart_ids_failed(
         self,
+        cart_api,
+        product_api,
+        address_api,
         order_api,
         test_conn,
     ):
         """TC_ECOM_056 验证缺少 cartIds 时封装校验失败且订单不新增"""
         case_data = ORDER_CREATE_PAYMENT_DATA["TC_ECOM_056"][0]
+        workflow = _build_workflow(cart_api, product_api, address_api, order_api)
         order_queries = OrderQueries(test_conn)
+        context = workflow.prepare_order(
+            product_id=case_data["product_id"],
+            product_sku_id=case_data["sku_id"],
+            quantity=case_data["quantity"],
+        )
         before_order = order_queries.get_latest_member_order(
             case_data["member_username"]
         )
 
-        response = order_api.generate_order(
-            cart_id=case_data["cart_ids"],
-            pay_type=case_data["pay_type"],
-            enable=False,
-        )
-        after_order = order_queries.get_latest_member_order(
-            case_data["member_username"]
-        )
+        try:
+            response = order_api.generate_order(
+                cart_id=case_data["cart_ids"],
+                pay_type=case_data["pay_type"],
+                member_receive_address_id=context["address_id"],
+                enable=False,
+            )
+            after_order = order_queries.get_latest_member_order(
+                case_data["member_username"]
+            )
 
-        verify_order_generation_rejected(
-            response,
-            success_code=case_data["success_business_code"],
-            expected_message_keywords=case_data["expected_message_keywords"],
-        )
-        verify_latest_order_unchanged(before_order, after_order)
+            verify_order_generation_rejected(
+                response,
+                success_code=case_data["success_business_code"],
+                expected_message_keywords=case_data["expected_message_keywords"],
+            )
+            verify_latest_order_unchanged(before_order, after_order)
+        finally:
+            cart_api.clear_cart()
 
     @pytest.mark.p0
     @pytest.mark.title("TC_ECOM_057 创建订单缺少payType失败")

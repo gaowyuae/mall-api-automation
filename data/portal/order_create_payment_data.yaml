@@ -19,6 +19,9 @@ TC_ECOM_055:
 
 TC_ECOM_056:
   - member_username: test
+    product_id: 30
+    sku_id: 179
+    quantity: 1
     cart_ids: null
     pay_type: 1
     expected_required_field: cartIds
