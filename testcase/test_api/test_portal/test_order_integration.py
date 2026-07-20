@@ -1,6 +1,7 @@
 import pytest
 
 from core.load_yaml import load_yaml
+from test_support.db_preconditions import restore_member_integration_precondition
 from test_support.db_queries.integration_queries import IntegrationQueries
 from test_support.db_queries.order_queries import OrderQueries
 from verifications.common.response import verify_business_code
@@ -135,6 +136,12 @@ class TestOrderIntegration:
     ):
         """TC_ECOM_048 验证使用部分积分后余额、流水和订单金额一致"""
         case_data = INTEGRATION_ORDER_DATA["TC_ECOM_048"][0]
+        restore_member_integration_precondition(
+            test_conn,
+            case_id="TC_ECOM_048",
+            member_username=case_data["member_username"],
+            integration=case_data["expected_member_integration"],
+        )
         order_queries = OrderQueries(test_conn)
         integration_queries = IntegrationQueries(test_conn)
         workflow = _build_workflow(cart_api, product_api, address_api, order_api)
@@ -215,6 +222,12 @@ class TestOrderIntegration:
     ):
         """TC_ECOM_049 验证积分不足时不能超扣或创建订单"""
         case_data = INTEGRATION_ORDER_DATA["TC_ECOM_049"][0]
+        restore_member_integration_precondition(
+            test_conn,
+            case_id="TC_ECOM_049",
+            member_username=case_data["member_username"],
+            integration=case_data["expected_member_integration"],
+        )
         order_queries = OrderQueries(test_conn)
         integration_queries = IntegrationQueries(test_conn)
         workflow = _build_workflow(cart_api, product_api, address_api, order_api)

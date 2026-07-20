@@ -3,6 +3,7 @@ import pytest
 from api_support.portal.cart_helper import PortalCartHelper
 from apis.portal.cart_item_api import CartItemAPI
 from core.load_yaml import load_yaml
+from test_support.db_preconditions import restore_sku_stock_precondition
 from test_support.db_queries import CartQueries
 from verifications.common.response import verify_business_code
 from verifications.portal.cart import (
@@ -281,6 +282,12 @@ class TestAddCart:
     ):
         """TC_ECOM_023 验证加购数量超过 SKU 库存时不写入购物车"""
         case_data = ADD_CART_DATA["TC_ECOM_023"][0]
+        restore_sku_stock_precondition(
+            test_conn,
+            case_id="TC_ECOM_023",
+            sku_id=case_data["sku_id"],
+            stock=case_data["expected_stock"],
+        )
         cart_queries = CartQueries(test_conn)
         detail_response = product_api.search_product_detail(case_data["product_id"])
         verify_sku_stock(

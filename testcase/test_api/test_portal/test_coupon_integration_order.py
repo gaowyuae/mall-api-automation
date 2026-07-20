@@ -1,6 +1,10 @@
 import pytest
 
 from core.load_yaml import load_yaml
+from test_support.db_preconditions import (
+    restore_coupon_history_precondition,
+    restore_member_integration_precondition,
+)
 from test_support.db_queries.coupon_queries import CouponQueries
 from test_support.db_queries.integration_queries import IntegrationQueries
 from test_support.db_queries.order_queries import OrderQueries
@@ -56,6 +60,18 @@ class TestCouponIntegrationOrder:
     ):
         """TC_ECOM_052 验证先券后积分的订单金额及关联数据一致"""
         case_data = COUPON_INTEGRATION_DATA["TC_ECOM_052"][0]
+        restore_member_integration_precondition(
+            test_conn,
+            case_id="TC_ECOM_052",
+            member_username=case_data["member_username"],
+            integration=case_data["minimum_member_integration"],
+        )
+        restore_coupon_history_precondition(
+            test_conn,
+            case_id="TC_ECOM_052",
+            member_username=case_data["member_username"],
+            coupon_history_reference=case_data["coupon_history_reference"],
+        )
         workflow = _build_workflow(cart_api, product_api, address_api, order_api)
         order_queries = OrderQueries(test_conn)
         coupon_queries = CouponQueries(test_conn)
@@ -217,6 +233,18 @@ class TestCouponIntegrationOrder:
     ):
         """TC_ECOM_053 验证优惠券和积分同时满足时均被使用"""
         case_data = COUPON_INTEGRATION_DATA["TC_ECOM_053"][0]
+        restore_member_integration_precondition(
+            test_conn,
+            case_id="TC_ECOM_053",
+            member_username=case_data["member_username"],
+            integration=case_data["minimum_member_integration"],
+        )
+        restore_coupon_history_precondition(
+            test_conn,
+            case_id="TC_ECOM_053",
+            member_username=case_data["member_username"],
+            coupon_history_reference=case_data["coupon_history_reference"],
+        )
         workflow = _build_workflow(cart_api, product_api, address_api, order_api)
         order_queries = OrderQueries(test_conn)
         coupon_queries = CouponQueries(test_conn)
