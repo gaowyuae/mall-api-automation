@@ -1,3 +1,6 @@
+from test_support.db_preconditions import _clear_member_cache
+
+
 class CreateNoAddressMember:
     """管理无地址测试会员的创建与安全清理"""
 
@@ -54,6 +57,50 @@ class CreateNoAddressMember:
         )
         return int((result or {}).get("cart_count") or 0)
 
+    def _count_stale_cart_items(self, member_username):
+        """统计指向已删除测试会员的旧购物车数据。"""
+        result = self.db.fetchone(
+            """
+            SELECT COUNT(*) AS cart_count
+            FROM oms_cart_item c
+            LEFT JOIN ums_member m ON m.id = c.member_id
+            WHERE c.member_nickname = %s
+              AND m.id IS NULL
+            """,
+            (member_username,),
+        )
+        return int((result or {}).get("cart_count") or 0)
+
+    def _reset_cart_state(self, member_id, member_username):
+        """恢复无地址测试会员的购物车和会员缓存。"""
+        self.db.execute(
+            """
+            DELETE FROM oms_cart_item
+            WHERE member_id = %s
+            """,
+            (member_id,),
+        )
+        self.db.execute(
+            """
+            DELETE c
+            FROM oms_cart_item c
+            LEFT JOIN ums_member m ON m.id = c.member_id
+            WHERE c.member_nickname = %s
+              AND m.id IS NULL
+            """,
+            (member_username,),
+        )
+        self.db.commit()
+
+        cart_count = self._count_cart_items(member_id)
+        stale_count = self._count_stale_cart_items(member_username)
+        if cart_count != 0 or stale_count != 0:
+            raise RuntimeError(
+                f"无地址测试会员购物车清理失败：member_id={member_id}，"
+                f"剩余数量={cart_count}，旧缓存购物车数量={stale_count}"
+            )
+        _clear_member_cache(member_username)
+
     def create_no_address_member(
         self,
         source_username,
@@ -64,13 +111,13 @@ class CreateNoAddressMember:
         existing_member_id = self._get_member_id(target_username)
         if existing_member_id is not None:
             dependency_counts = self._get_dependency_counts(existing_member_id)
-            dependency_counts["cart_count"] = self._count_cart_items(existing_member_id)
             if any(dependency_counts.values()):
                 raise RuntimeError(
                     f"已有测试会员不满足无地址、无订单、空购物车前提："
                     f"{target_username}，"
                     f"依赖数据={dependency_counts}"
                 )
+            self._reset_cart_state(existing_member_id, target_username)
             return existing_member_id
 
         sql = """
@@ -121,6 +168,7 @@ class CreateNoAddressMember:
         member_id = self._get_member_id(target_username)
         if member_id is None:
             raise RuntimeError(f"创建后未找到测试会员：{target_username}")
+        self._reset_cart_state(member_id, target_username)
         return member_id
 
     def delete_no_address_member(
